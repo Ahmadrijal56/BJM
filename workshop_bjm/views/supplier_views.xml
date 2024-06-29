@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_supplier_form" model="ir.ui.view">
+        <field name="name">supplier.form</field>
+        <field name="model">workshop_bjm.supplier</field>
+        <field name="arch" type="xml">
+            <form string="Supplier">
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="text-align: left;">Data Supplier Bintang Jaya Motor</h1>
+                        <field name="name"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="alamat"/>
+                            <field name="no_telepon"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="catatan"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_supplier_tree" model="ir.ui.view">
+        <field name="name">supplier.tree</field>
+        <field name="model">workshop_bjm.supplier</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="alamat"/>
+                <field name="no_telepon"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_supplier" model="ir.actions.act_window">
+        <field name="name">Data Supplier</field>
+        <field name="res_model">workshop_bjm.supplier</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tambah dan kelola data supplier.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_workshop_bjm_root" name="Workshop BJM"/>
+    <menuitem id="menu_supplier" name="Data Supplier" parent="menu_workshop_bjm_root" action="action_supplier"/>
+</odoo>

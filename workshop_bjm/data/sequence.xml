@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_workshop_bjm_data_konsumen" model="ir.sequence">
+        <field name="name">Data Konsumen Sequence</field>
+        <field name="code">workshop_bjm.data_konsumen</field>
+        <field name="prefix"></field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

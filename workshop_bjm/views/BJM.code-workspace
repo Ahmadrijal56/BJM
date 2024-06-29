@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../Odoo17/server"
+		},
+		{
+			"path": "../../../Odoo_WWPI/wwpi-addons"
+		}
+	],
+	"settings": {}
+}

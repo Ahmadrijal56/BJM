@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_mekanik_form" model="ir.ui.view">
+        <field name="name">mekanik.form</field>
+        <field name="model">workshop_bjm.mekanik</field>
+        <field name="arch" type="xml">
+            <form string="Mekanik">
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="text-align: left;">Data Mekanik Bintang Jaya Motor</h1>
+                        <field name="name"/>
+                    </div>
+                    <group>
+                        <field name="alamat"/>
+                        <field name="no_telepon"/>
+                        <field name="email"/>
+                        <field name="pengalaman"/>
+                    </group>
+                    <group>
+                        <field name="catatan"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_mekanik_tree" model="ir.ui.view">
+        <field name="name">mekanik.tree</field>
+        <field name="model">workshop_bjm.mekanik</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="alamat"/>
+                <field name="no_telepon"/>
+                <field name="email"/>
+                <field name="pengalaman"/>
+                <field name="catatan"/>
+                <field name="create_uid" invisible="1"/>
+                <field name="create_date" invisible="1"/>
+                <field name="write_uid" invisible="1"/>
+                <field name="write_date" invisible="1"/>
+                <field name="id" invisible="1"/>
+                <!-- Hapus bagian button yang menyebabkan error -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_mekanik" model="ir.actions.act_window">
+        <field name="name">Data Mekanik</field>
+        <field name="res_model">workshop_bjm.mekanik</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tambah dan kelola data mekanik.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menuitem -->
+    <menuitem id="menu_workshop_bjm_root" name="Workshop BJM"/>
+    <menuitem id="menu_mekanik" name="Data Mekanik" parent="menu_workshop_bjm_root" action="action_mekanik"/>
+
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_workshop_bjm_data_konsumen,access.workshop_bjm.data_konsumen,model_workshop_bjm_data_konsumen,base.group_user,1,1,1,1
+access_workshop_bjm_data_konsumen_line,Workshop BJM User,model_workshop_bjm_data_konsumen_line,base.group_user,1,1,1,1
+access_workshop_bjm_supplier,access.workshop_bjm.supplier,model_workshop_bjm_supplier,base.group_user,1,1,1,1
+access_workshop_bjm_car_brand,access.workshop_bjm.car_brand,model_workshop_bjm_car_brand,base.group_user,1,1,1,1
+access_workshop_bjm_car_type,access.workshop_bjm.car_type,model_workshop_bjm_car_type,base.group_user,1,1,1,1
+access_workshop_bjm_mekanik,access.workshop_bjm.mekanik,model_workshop_bjm_mekanik,base.group_user,1,1,1,1
+
+

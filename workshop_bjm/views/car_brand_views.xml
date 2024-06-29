@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Car Brand Views -->
+    <record id="view_car_brand_form" model="ir.ui.view">
+        <field name="name">car.brand.form</field>
+        <field name="model">workshop_bjm.car_brand</field>
+        <field name="arch" type="xml">
+            <form string="Car Brand">
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="text-align: left;">Car Brand Details</h1>
+                        <field name="name"/>
+                    </div>
+                    <notebook>
+                        <page string="Car Types" name="car_types">
+                            <field name="type_ids" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_car_brand_tree" model="ir.ui.view">
+        <field name="name">car.brand.tree</field>
+        <field name="model">workshop_bjm.car_brand</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="type_ids" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Car Brand Action -->
+    <record id="action_car_brand" model="ir.actions.act_window">
+        <field name="name">Car Brands</field>
+        <field name="res_model">workshop_bjm.car_brand</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage car brands and their types.
+            </p>
+        </field>
+    </record>
+
+    <!-- Car Brand Menu -->
+    <menuitem id="menu_workshop_bjm_root" name="Workshop BJM"/>
+    <menuitem id="menu_car_brand" name="Data Merek Mobil" parent="menu_workshop_bjm_root" action="action_car_brand"/>
+</odoo>
