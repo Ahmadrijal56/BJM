@@ -17,8 +17,7 @@ class DataKonsumen(models.Model):
     data_konsumen_line_ids = fields.One2many('workshop_bjm.data_konsumen_line', 'data_konsumen_id', string='Data Konsumen Line')
 
     merk_mobil_id = fields.Many2one('workshop_bjm.car_brand', string='Merk Mobil')
-    varian_mobil_id = fields.Many2one('workshop_bjm.car_type', string='Varian Mobil',
-                                      domain="[('brand_id', '=', merk_mobil_id)]")
+    varian_mobil_id = fields.Many2one('workshop_bjm.car_type', string='Varian Mobil', domain="[('brand_id', '=', merk_mobil_id)]")
 
     @api.model
     def create(self, vals):
@@ -32,6 +31,17 @@ class DataKonsumen(models.Model):
             vals['kode_dokumen'] = formatted_code
         result = super(DataKonsumen, self).create(vals)
         return result
+
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        default.update({
+            'tanggal_service': False,
+            'no_faktur': False,
+        })
+        return super(DataKonsumen, self).copy(default)
+
+
 
 class DataKonsumenLine(models.Model):
     _name = 'workshop_bjm.data_konsumen_line'
