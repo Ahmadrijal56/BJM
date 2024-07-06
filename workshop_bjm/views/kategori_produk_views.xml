@@ -8,10 +8,10 @@
             <form string="Product Category">
                 <sheet>
                     <div class="oe_title">
-                        <h1 style="text-align: left;">Product Category</h1>
-                        <field name="name"/>
+                        <h1 style="text-align: left;">Product Supplier</h1>
                     </div>
                     <group>
+                        <field name="name"/>
                         <field name="description"/>
                     </group>
                 </sheet>
@@ -51,7 +51,7 @@
 
     <!-- Action -->
     <record id="action_kategori_produk" model="ir.actions.act_window">
-        <field name="name">Product Categories</field>
+        <field name="name">Produk Supplier</field>
         <field name="res_model">workshop_bjm.kategori_produk</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_kategori_produk_search"/>

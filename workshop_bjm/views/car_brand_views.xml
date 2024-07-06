@@ -8,11 +8,11 @@
             <form string="Car Brand">
                 <sheet>
                     <div class="oe_title">
-                        <h1 style="text-align: left;">Car Brand Details</h1>
+                        <h1 style="text-align: left;">Merek Mobil</h1>
                         <field name="name"/>
                     </div>
                     <notebook>
-                        <page string="Car Types" name="car_types">
+                        <page string="Type Mobil" name="car_types">
                             <field name="type_ids" widget="one2many_list">
                                 <tree editable="bottom">
                                     <field name="name"/>
@@ -55,7 +55,7 @@
 
     <!-- Car Brand Action -->
     <record id="action_car_brand" model="ir.actions.act_window">
-        <field name="name">Car Brands</field>
+        <field name="name">Merek Mobil</field>
         <field name="res_model">workshop_bjm.car_brand</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_car_brand_search"/>

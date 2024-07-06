@@ -9,9 +9,9 @@
                 <sheet>
                     <div class="oe_title">
                         <h1 style="text-align: left;">Data Mekanik Bintang Jaya Motor</h1>
-                        <field name="name"/>
                     </div>
                     <group>
+                        <field name="name"/>
                         <field name="alamat"/>
                         <field name="no_telepon"/>
                         <field name="email"/>

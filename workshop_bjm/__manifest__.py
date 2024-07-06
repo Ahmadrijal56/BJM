@@ -16,7 +16,7 @@
         'views/car_brand_views.xml',
         'views/mekanik_views.xml',
         'views/kategori_produk_views.xml',
-        'views/dashboard_views.xml',
+        # 'views/dashboard_views.xml',
     ],
     'installable': True,
     'application': True,

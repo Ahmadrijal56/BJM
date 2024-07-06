@@ -6,11 +6,11 @@ class Dashboard(models.Model):
     _description = 'Workshop BJM Dashboard'
 
     name = fields.Char(string='Name', default='Dashboard')
-    invoice_month_count = fields.Integer(string='Invoices This Month', compute='_compute_invoice_counts')
-    invoice_week_count = fields.Integer(string='Invoices This Week', compute='_compute_invoice_counts')
-    customer_count = fields.Integer(string='Customers', compute='_compute_customer_count')
-    mechanic_count = fields.Integer(string='Mechanics', compute='_compute_mechanic_count')
-    supplier_count = fields.Integer(string='Suppliers', compute='_compute_supplier_count')
+    invoice_month_count = fields.Integer(string='Jumlah Faktur Di Bulan Ini', compute='_compute_invoice_counts')
+    invoice_week_count = fields.Integer(string='Jumlah Faktur Di Minggu Ini', compute='_compute_invoice_counts')
+    customer_count = fields.Integer(string='Konsumen', compute='_compute_customer_count')
+    mechanic_count = fields.Integer(string='Mekanik', compute='_compute_mechanic_count')
+    supplier_count = fields.Integer(string='Supplier', compute='_compute_supplier_count')
 
     @api.depends('name')
     def _compute_invoice_counts(self):
@@ -18,19 +18,20 @@ class Dashboard(models.Model):
             today = fields.Date.today()
             start_of_month = today.replace(day=1)
             start_of_week = today - timedelta(days=today.weekday())
-            record.invoice_month_count = self.env['account.move'].search_count([
-                ('invoice_date', '>=', start_of_month),
-                ('state', '=', 'posted')
+            record.invoice_month_count = self.env['workshop_bjm.data_konsumen'].search_count([
+                ('tanggal_service', '>=', start_of_month)
             ])
-            record.invoice_week_count = self.env['account.move'].search_count([
-                ('invoice_date', '>=', start_of_week),
-                ('state', '=', 'posted')
+            record.invoice_week_count = self.env['workshop_bjm.data_konsumen'].search_count([
+                ('tanggal_service', '>=', start_of_week)
             ])
 
     @api.depends('name')
     def _compute_customer_count(self):
         for record in self:
-            record.customer_count = self.env['res.partner'].search_count([('customer_rank', '>', 0)])
+            # Ambil semua nama unik dari model workshop_bjm.data_konsumen
+            all_names = self.env['workshop_bjm.data_konsumen'].search([]).mapped('name')
+            unique_names = set(all_names)  # Gunakan set untuk mendapatkan nama unik
+            record.customer_count = len(unique_names)  # Hitung jumlah nama unik
 
     @api.depends('name')
     def _compute_mechanic_count(self):
