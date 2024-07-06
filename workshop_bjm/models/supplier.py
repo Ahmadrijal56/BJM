@@ -6,6 +6,7 @@ class Supplier(models.Model):
 
     name = fields.Char(string='Nama Supplier', required=True)
     alamat = fields.Text(string='Alamat')
+    produk = fields.Many2many('workshop_bjm.kategori_produk', string='Produk')
     no_telepon = fields.Char(string='Nomor Telepon')
     email = fields.Char(string='Email')
     catatan = fields.Text(string='Catatan')

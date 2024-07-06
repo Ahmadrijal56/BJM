@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- Dashboard Kanban View -->
+        <record id="view_dashboard_kanban" model="ir.ui.view">
+            <field name="name">dashboard.kanban</field>
+            <field name="model">workshop_bjm.dashboard</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_dashboard o_emphasize_colors o_stock_kanban">
+                    <field name="name"/>
+                    <field name="invoice_month_count"/>
+                    <field name="invoice_week_count"/>
+                    <field name="customer_count"/>
+                    <field name="mechanic_count"/>
+                    <field name="supplier_count"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary">
+                                            <field name="name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content">
+                                    <div class="row">
+                                        <div class="col-6 o_kanban_primary_left">
+                                            <button class="btn btn-primary" name="action_open_invoices" type="object">
+                                                Invoices This Month: <t t-esc="record.invoice_month_count"/>
+                                            </button>
+                                        </div>
+                                        <div class="col-6 o_kanban_primary_right">
+                                            <button class="btn btn-primary" name="action_open_customers" type="object">
+                                                Customers: <t t-esc="record.customer_count"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-6 o_kanban_primary_left">
+                                            <button class="btn btn-primary" name="action_open_mechanics" type="object">
+                                                Mechanics: <t t-esc="record.mechanic_count"/>
+                                            </button>
+                                        </div>
+                                        <div class="col-6 o_kanban_primary_right">
+                                            <button class="btn btn-primary" name="action_open_suppliers" type="object">
+                                                Suppliers: <t t-esc="record.supplier_count"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action for Dashboard Kanban View -->
+        <record id="action_data_dashboard_kanban" model="ir.actions.act_window">
+            <field name="name">Dashboard Kanban</field>
+            <field name="res_model">workshop_bjm.dashboard</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_dashboard_kanban"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first Konsumen
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu Item for Dashboard Kanban -->
+        <menuitem id="menu_data_dashboard_kanban" name="Dashboard Kanban" parent="menu_workshop_bjm_root" action="action_data_dashboard_kanban"/>
+
+    </data>
+</odoo>

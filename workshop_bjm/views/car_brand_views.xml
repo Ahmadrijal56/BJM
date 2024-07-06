@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Car Brand Views -->
+    <!-- Car Brand Form View -->
     <record id="view_car_brand_form" model="ir.ui.view">
         <field name="name">car.brand.form</field>
         <field name="model">workshop_bjm.car_brand</field>
@@ -25,6 +25,7 @@
         </field>
     </record>
 
+    <!-- Car Brand Tree View -->
     <record id="view_car_brand_tree" model="ir.ui.view">
         <field name="name">car.brand.tree</field>
         <field name="model">workshop_bjm.car_brand</field>
@@ -36,11 +37,28 @@
         </field>
     </record>
 
+    <!-- Car Brand Search View -->
+    <record id="view_car_brand_search" model="ir.ui.view">
+        <field name="name">car.brand.search</field>
+        <field name="model">workshop_bjm.car_brand</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Brand Name"/>
+                
+                <!-- Filter Group By -->
+                <filter string="Group By" name="group_by">
+                    <filter name="name" string="Brand Name" context="{'group_by': 'name'}"/>
+                </filter>
+            </search>
+        </field>
+    </record>
+
     <!-- Car Brand Action -->
     <record id="action_car_brand" model="ir.actions.act_window">
         <field name="name">Car Brands</field>
         <field name="res_model">workshop_bjm.car_brand</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_car_brand_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Manage car brands and their types.
@@ -48,7 +66,8 @@
         </field>
     </record>
 
-    <!-- Car Brand Menu -->
+    <!-- Menu Items -->
     <menuitem id="menu_workshop_bjm_root" name="Workshop BJM"/>
-    <menuitem id="menu_car_brand" name="Data Merek Mobil" parent="menu_workshop_bjm_root" action="action_car_brand"/>
+    <menuitem id="menu_data_master" name="Master Data" parent="menu_workshop_bjm_root"/>
+    <menuitem id="menu_merek_mobil" name="Data Merek Mobil" parent="menu_data_master" action="action_car_brand"/>
 </odoo>

@@ -9,6 +9,7 @@ class DataKonsumen(models.Model):
     no_polisi = fields.Char(string='No Polisi')
     no_telepon = fields.Char(string='No Telepon')
     no_fax = fields.Char(string='No Fax')
+    no_km = fields.Integer(string='KM')
     tanggal_service = fields.Date(string='Tanggal Service')
     no_faktur = fields.Char(string='No Faktur')
     kode_dokumen = fields.Char(string='Kode Dokumen', readonly=True, copy=False, default='New')

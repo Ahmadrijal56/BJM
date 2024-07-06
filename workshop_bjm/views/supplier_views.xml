@@ -8,13 +8,14 @@
                 <sheet>
                     <div class="oe_title">
                         <h1 style="text-align: left;">Data Supplier Bintang Jaya Motor</h1>
-                        <field name="name"/>
                     </div>
                     <group>
                         <group>
-                            <field name="alamat"/>
-                            <field name="no_telepon"/>
+                            <field name="name" required="1"/>
+                            <field name="produk" widget="many2many_tags" required="1"/>
+                            <field name="no_telepon" required="1"/>
                             <field name="email"/>
+                            <field name="alamat"/>
                         </group>
                         <group>
                             <field name="catatan"/>
@@ -31,9 +32,29 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="alamat"/>
+                <field name="produk" widget="many2many_tags"/>
                 <field name="no_telepon"/>
+                <field name="alamat"/>
             </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_supplier_search" model="ir.ui.view">
+        <field name="name">supplier.search</field>
+        <field name="model">workshop_bjm.supplier</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Nama Supplier"/>
+                <field name="produk" string="Produk"/>
+                <field name="no_telepon" string="Nomor Telepon"/>
+                <field name="alamat" string="Alamat"/>
+
+                <filter string="Nama Supplier" name="group_by_name" context="{'group_by':'name'}"/>
+                <filter string="Produk" name="group_by_produk" context="{'group_by':'produk'}"/>
+                <filter string="Nomor Telepon" name="group_by_no_telepon" context="{'group_by':'no_telepon'}"/>
+                <filter string="Alamat" name="group_by_alamat" context="{'group_by':'alamat'}"/>
+            </search>
         </field>
     </record>
 
@@ -41,6 +62,7 @@
         <field name="name">Data Supplier</field>
         <field name="res_model">workshop_bjm.supplier</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_supplier_search"/> <!-- Referensi ke search view -->
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Tambah dan kelola data supplier.

@@ -4,6 +4,7 @@ access_workshop_bjm_data_konsumen_line,Workshop BJM User,model_workshop_bjm_data
 access_workshop_bjm_supplier,access.workshop_bjm.supplier,model_workshop_bjm_supplier,base.group_user,1,1,1,1
 access_workshop_bjm_car_brand,access.workshop_bjm.car_brand,model_workshop_bjm_car_brand,base.group_user,1,1,1,1
 access_workshop_bjm_car_type,access.workshop_bjm.car_type,model_workshop_bjm_car_type,base.group_user,1,1,1,1
-access_workshop_bjm_mekanik,access.workshop_bjm.mekanik,model_workshop_bjm_mekanik,base.group_user,1,1,1,1
-
+access_workshop_bjm_mekanik,access.workshop_bjm.mekanik,model_workshop_bjm_mekanik,,base.group_user,1,1,1,1
+access_workshop_bjm_kategori_produk,access.workshop_bjm.kategori_produk,model_workshop_bjm_kategori_produk,base.group_user,1,1,1,1
+access_workshop_bjm_dashboard,access_workshop_bjm_dashboard,model_workshop_bjm_dashboard,base.group_user,1,1,1,1
 

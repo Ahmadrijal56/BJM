@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_kategori_produk_form" model="ir.ui.view">
+        <field name="name">product.category.form</field>
+        <field name="model">workshop_bjm.kategori_produk</field>
+        <field name="arch" type="xml">
+            <form string="Product Category">
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="text-align: left;">Product Category</h1>
+                        <field name="name"/>
+                    </div>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_kategori_produk_tree" model="ir.ui.view">
+        <field name="name">product.category.tree</field>
+        <field name="model">workshop_bjm.kategori_produk</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_kategori_produk_search" model="ir.ui.view">
+        <field name="name">product.category.search</field>
+        <field name="model">workshop_bjm.kategori_produk</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Category Name"/>
+                <field name="description" string="Description"/>
+                
+                <!-- Filter Group By -->
+                <filter string="Group By" name="group_by">
+                    <filter name="name" string="Category Name" context="{'group_by': 'name'}"/>
+                    <filter name="description" string="Description" context="{'group_by': 'description'}"/>
+                </filter>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_kategori_produk" model="ir.actions.act_window">
+        <field name="name">Product Categories</field>
+        <field name="res_model">workshop_bjm.kategori_produk</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_kategori_produk_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create and manage product categories.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menuitem -->
+    <menuitem id="menu_workshop_bjm_root" name="Workshop BJM"/>
+    <menuitem id="menu_data_master" name="Master Data" parent="menu_workshop_bjm_root"/>
+    <menuitem id="menu_kategori_produk" name="Data Produk Supplier" parent="menu_data_master" action="action_kategori_produk"/>
+</odoo>

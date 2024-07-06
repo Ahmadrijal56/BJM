@@ -12,6 +12,7 @@
                 <field name="no_polisi"/>
                 <field name="merk_mobil_id"/>
                 <field name="varian_mobil_id"/>
+                <field name="no_km"/>
                 <field name="no_telepon"/>
                 <field name="no_fax"/>
                 <field name="tanggal_service"/>
@@ -33,22 +34,23 @@
                 </div>
                 <group>
                     <group>
-                        <field name="name"/>
+                        <field name="name" required="1"/>
                         <field name="alamat"/>
                         <field name="no_telepon"/>
                         <field name="no_fax"/>
-                        <field name="tanggal_service"/>
-                        <field name="no_faktur"/>
+                        <field name="tanggal_service" required="1"/>
+                        <field name="no_faktur" required="1"/>
                     </group>
                     <group>
-                        <field name="no_polisi"/>
-                        <field name="merk_mobil_id"/>
+                        <field name="no_polisi" required="1"/>
+                        <field name="merk_mobil_id" required="1"/>
                         <field name="varian_mobil_id"/>
+                        <field name="no_km" required="1"/>
                     </group>
                 </group>
                <notebook>
                     <page string="Data Service" name="operations">
-                        <field name="data_konsumen_line_ids" widget="one2many_list">
+                        <field name="data_konsumen_line_ids" widget="one2many_list" required="1">
                             <tree editable="top">
                                 <field name="nama_barang"/>
                                 <field name="mekanik" widget="many2many_tags"/>
@@ -69,46 +71,56 @@
     </field>
 </record>
 
-    <record id="view_data_konsumen_search" model="ir.ui.view">
-    <field name="name">data.konsumen.search</field>
-    <field name="model">workshop_bjm.data_konsumen</field>
-    <field name="arch" type="xml">
-        <search>
-            <field name="kode_dokumen" string="Kode Dokumen"/>
-            <field name="name" string="Nama"/>
-            <field name="alamat" string="Alamat"/>
-            <field name="no_polisi" string="No Polisi"/>
-            <field name="merk_mobil_id" string="Merk Mobil"/>
-            <field name="varian_mobil_id" string="Varian Mobil"/>
-            <field name="no_telepon" string="No Telepon"/>
-            <field name="no_fax" string="No Fax"/>
-            <field name="tanggal_service" string="Tanggal Service"/>
-            <field name="no_faktur" string="No Faktur"/>
-            
-            <!-- Fields from data_konsumen_line -->
-            <!-- <field name="data_konsumen_line_ids.nama_barang" string="Nama Barang"/>
-            <field name="data_konsumen_line_ids.mekanik" string="Mekanik"/>
-            <field name="data_konsumen_line_ids.keterangan" string="Keterangan"/> -->
-            
-            <!-- Menambahkan group by -->
-            <filter string="Group By" name="group_by">
-                <filter name="name" string="Nama" context="{'group_by': 'name'}"/>
-                <filter name="alamat" string="Alamat" context="{'group_by': 'alamat'}"/>
-                <filter name="no_polisi" string="No Polisi" context="{'group_by': 'no_polisi'}"/>
-                <filter name="merk_mobil_id" string="Merk Mobil" context="{'group_by': 'merk_mobil_id'}"/>
-                <filter name="varian_mobil_id" string="Varian Mobil" context="{'group_by': 'varian_mobil_id'}"/>
-                <filter name="no_telepon" string="No Telepon" context="{'group_by': 'no_telepon'}"/>
-                <filter name="no_fax" string="No Fax" context="{'group_by': 'no_fax'}"/>
-                <filter name="tanggal_service" string="Tanggal Service" context="{'group_by': 'tanggal_service'}"/>
-                <filter name="no_faktur" string="No Faktur" context="{'group_by': 'no_faktur'}"/>
-            </filter>
-        </search>
-    </field>
-</record>
+      <record id="view_data_konsumen_search" model="ir.ui.view">
+        <field name="name">data.konsumen.search</field>
+        <field name="model">workshop_bjm.data_konsumen</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="no_polisi" string="No Polisi"/>
+                <field name="name" string="Nama"/>
+                <field name="alamat" string="Alamat"/>
+                <field name="merk_mobil_id" string="Merk Mobil"/>
+                <field name="varian_mobil_id" string="Varian Mobil"/>
+                <field name="no_telepon" string="No Telepon"/>
+                <field name="no_fax" string="No Fax"/>
+                <field name="tanggal_service" string="Tanggal Service"/>
+                <field name="no_faktur" string="No Faktur"/>
 
+                 <!-- Menambahkan field dari data_konsumen_line -->
+                <!-- <field name="nama_barang" string="Nama Barang"/>
+                <field name="mekanik" string="Mekanik"/>
+                <field name="keterangan" string="Keterangan"/>
+                 -->
+                <!-- Menambahkan group by -->
+                <filter string="Group By" name="group_by">
+                    <filter name="name" string="Nama" context="{'group_by': 'name'}"/>
+                    <filter name="alamat" string="Alamat" context="{'group_by': 'alamat'}"/>
+                    <filter name="no_polisi" string="No Polisi" context="{'group_by': 'no_polisi'}"/>
+                    <filter name="merk_mobil_id" string="Merk Mobil" context="{'group_by': 'merk_mobil_id'}"/>
+                    <filter name="varian_mobil_id" string="Varian Mobil" context="{'group_by': 'varian_mobil_id'}"/>
+                    <filter name="no_telepon" string="No Telepon" context="{'group_by': 'no_telepon'}"/>
+                    <filter name="no_fax" string="No Fax" context="{'group_by': 'no_fax'}"/>
+                    <filter name="tanggal_service" string="Tanggal Service" context="{'group_by': 'tanggal_service'}"/>
+                    <filter name="no_faktur" string="No Faktur" context="{'group_by': 'no_faktur'}"/>
+                </filter>
+            </search>
+        </field>
+    </record>
 
+    <!-- View untuk data_konsumen_line -->
+    <record id="view_data_konsumen_line_search" model="ir.ui.view">
+        <field name="name">data.konsumen.line.search</field>
+        <field name="model">workshop_bjm.data_konsumen_line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nama_barang" string="Nama Barang"/>
+                <field name="mekanik" string="Mekanik"/>
+                <field name="keterangan" string="Keterangan"/>
+            </search>
+        </field>
+    </record>
 
-    <!-- Action -->
+    <!-- Action untuk data_konsumen -->
     <record id="action_data_konsumen" model="ir.actions.act_window">
         <field name="name">Data Konsumen</field>
         <field name="res_model">workshop_bjm.data_konsumen</field>

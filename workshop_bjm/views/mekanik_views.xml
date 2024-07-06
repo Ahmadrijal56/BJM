@@ -37,13 +37,32 @@
                 <field name="email"/>
                 <field name="pengalaman"/>
                 <field name="catatan"/>
-                <field name="create_uid" invisible="1"/>
-                <field name="create_date" invisible="1"/>
-                <field name="write_uid" invisible="1"/>
-                <field name="write_date" invisible="1"/>
-                <field name="id" invisible="1"/>
-                <!-- Hapus bagian button yang menyebabkan error -->
             </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_mekanik_search" model="ir.ui.view">
+        <field name="name">mekanik.search</field>
+        <field name="model">workshop_bjm.mekanik</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Nama"/>
+                <field name="alamat" string="Alamat"/>
+                <field name="no_telepon" string="Nomor Telepon"/>
+                <field name="email" string="Email"/>
+                <field name="pengalaman" string="Pengalaman"/>
+                <field name="catatan" string="Catatan"/>
+                
+                <!-- Filter Group By -->
+                <filter string="Group By" name="group_by">
+                    <filter name="name" string="Nama" context="{'group_by': 'name'}"/>
+                    <filter name="alamat" string="Alamat" context="{'group_by': 'alamat'}"/>
+                    <filter name="no_telepon" string="Nomor Telepon" context="{'group_by': 'no_telepon'}"/>
+                    <filter name="email" string="Email" context="{'group_by': 'email'}"/>
+                    <filter name="pengalaman" string="Pengalaman" context="{'group_by': 'pengalaman'}"/>
+                </filter>
+            </search>
         </field>
     </record>
 
@@ -52,6 +71,7 @@
         <field name="name">Data Mekanik</field>
         <field name="res_model">workshop_bjm.mekanik</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_mekanik_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Tambah dan kelola data mekanik.
@@ -61,6 +81,6 @@
 
     <!-- Menuitem -->
     <menuitem id="menu_workshop_bjm_root" name="Workshop BJM"/>
-    <menuitem id="menu_mekanik" name="Data Mekanik" parent="menu_workshop_bjm_root" action="action_mekanik"/>
-
+    <menuitem id="menu_data_master" name="Master Data" parent="menu_workshop_bjm_root"/>
+    <menuitem id="menu_mekanik" name="Data Mekanik" parent="menu_data_master" action="action_mekanik"/>
 </odoo>
