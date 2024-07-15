@@ -46,6 +46,7 @@
                             <field name="merk_mobil_id" required="1" />
                             <field name="varian_mobil_id" required="1" />
                             <field name="no_km" required="1" />
+                            <field name="nama_mekanik" required="1" widget="many2many_tags"/>
                         </group>
                     </group>
                     <notebook>
@@ -53,13 +54,13 @@
                             <field name="data_konsumen_line_ids" widget="one2many_list" required="1">
                                 <tree editable="top">
                                     <field name="nama_barang" required="1"/>
-                                    <field name="mekanik" widget="many2many_tags" required="1"/>
+                                    <field name="mekanik" widget="many2many_tags"/>
                                     <field name="keterangan" />
                                 </tree>
                                 <form>
                                     <group>
                                         <field name="nama_barang" required="1" />
-                                        <field name="mekanik" required="1"/>
+                                        <field name="mekanik"/>
                                         <field name="keterangan" />
                                     </group>
                                 </form>
@@ -85,6 +86,7 @@
                 <field name="no_fax" string="No Fax" />
                 <field name="tanggal_service" string="Tanggal Service" />
                 <field name="no_faktur" string="No Faktur" />
+                <field name="nama_mekanik" string="Nama Mekanik" />
                 <field name="data_konsumen_line_ids" string="Data Service" />
 
                 <!-- Menambahkan pencarian untuk nama_barang -->

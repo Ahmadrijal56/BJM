@@ -6,19 +6,20 @@ class DataKonsumen(models.Model):
 
     name = fields.Char(string='Name')
     alamat = fields.Char(string='Alamat')
-    no_polisi = fields.Char(string='No Polisi', required=True)
+    no_polisi = fields.Char(string='No Polisi')
     no_telepon = fields.Char(string='No Telepon')
     no_fax = fields.Char(string='No Fax')
     no_km = fields.Integer(string='KM')
-    tanggal_service = fields.Date(string='Tanggal Service', required=True)
-    no_faktur = fields.Char(string='No Faktur', required=True)
+    tanggal_service = fields.Date(string='Tanggal Service')
+    no_faktur = fields.Char(string='No Faktur')
+    nama_mekanik = fields.Many2many('workshop_bjm.mekanik', string='Mekanik')
     kode_dokumen = fields.Char(string='Kode Dokumen', readonly=True, copy=False, default='New')
     month = fields.Integer(string='Bulan')
     year = fields.Integer(string='Tahun')
     data_konsumen_line_ids = fields.One2many('workshop_bjm.data_konsumen_line', 'data_konsumen_id', string='Data Konsumen Line')
 
-    merk_mobil_id = fields.Many2one('workshop_bjm.car_brand', string='Merk Mobil', required=True)
-    varian_mobil_id = fields.Many2one('workshop_bjm.car_type', string='Varian Mobil', domain="[('brand_id', '=', merk_mobil_id)]", required=True)
+    merk_mobil_id = fields.Many2one('workshop_bjm.car_brand', string='Merk Mobil')
+    varian_mobil_id = fields.Many2one('workshop_bjm.car_type', string='Varian Mobil', domain="[('brand_id', '=', merk_mobil_id)]")
 
     # Computed fields for search
     search_nama_barang = fields.Char(string='Search Nama Barang', compute='_compute_search_fields', store=True)
@@ -52,6 +53,8 @@ class DataKonsumen(models.Model):
         default.update({
             'tanggal_service': False,
             'no_faktur': False,
+            'nama_mekanik': False,
+            'no_km': False,
         })
         return super(DataKonsumen, self).copy(default)
 
